@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block body_part %}
+    <div class="layui-body">
+        <div class="layui-card-header">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a href="">RedTeam Tools</a>
+                <a href="">免杀</a>
+                <a ><cite>SQLiBypass</cite></a>
+            </span>
+        </div>
+            <blockquote class="layui-elem-quote">关于该模块</blockquote>
+            <blockquote class="layui-elem-quote layui-quote-nm">
+            内置多种sqlibypass的sqlmap脚本
+            </blockquote>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>Sqli Bypass</legend>
+        </fieldset>
+        <form class="layui-form" action="" method="post">
+            <div class="layui-form-item">
+                <input type="radio" name="bypass" value="CommentBypass" title="综合绕过">
+                <input type="radio" name="bypass" value="Utf16Bypass" title="Utf16编码" checked>
+                <input type="radio" name="bypass" value="JsonBypass" title="Json编码">
+                <input type="radio" name="bypass" value="EvtBypass" title="日志绕过">
+                <input type="radio" name="bypass" value="Bypass360" title="360防注入">
+                <input type="radio" name="bypass" value="BypassDog" title="安全狗">
+                <input type="radio" name="bypass" value="BypassDun" title="D盾">
+                <input type="radio" name="bypass" value="BypassLua" title="LuaWAF">
+                <input type="radio" name="bypass" value="BypassYsuo" title="云锁">
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-filter="submitBut">立即提交</button>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">Exploit：</label>
+                    <div class="layui-input-block">
+                        <textarea rows="15" name="desc" placeholder="Exploit：" class="layui-textarea">{{ exp }}</textarea>
+                    </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block your_script %}
+    <script>
+        $(function () {
+           $(".layui-btn").click(function(){
+               var payload = $('[name = "bypass"]').val();
+               $.ajax({
+                  type:"POST",
+                  url:"/sqlbypass",
+                  data:payload,
+                   success:function (e) {
+                       if(e){
+                           layer.alert("提交成功！")
+                       }else {
+                            layer.alert("提交失败！")
+                       }
+                   },
+                   error:function(e){
+                      layer.alert("提交失败！")
+                   },
+               });
+               return false;
+           });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block body_part %}
+    <div class="layui-body">
+        <div class="layui-card-header">
+              <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">RedTeam Tools</a>
+        <a href="">提权</a>
+        <a ><cite>linux提权</cite></a>
+    </span>
+           <form class="layui-form-item" action="/linux-priv" method="post">
+                 <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">目标版本：</label>
+                        <div class="layui-input-block">
+                            <textarea name="version" placeholder="请输入内容：uname -r 如：2.3.5" class="layui-textarea"></textarea>
+                        </div>
+                 </div>
+                 <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                 </div>
+                 <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">Exploit：</label>
+                        <div class="layui-input-block">
+                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea">Name：{{ name }}  Cve：{{ cve }}  Src：{{ src }}</textarea>
+                        </div>
+                 </div>
+           </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

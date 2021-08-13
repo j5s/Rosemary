@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block body_part %}
+    <div class="layui-body">
+        <div class="layui-card-header">
+                    <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">RedTeam Tools</a>
+        <a href="">提权</a>
+        <a ><cite>windows提权</cite></a>
+    </span>
+            <form class="layui-form-item">
+                 <div class="layui-form-item layui-form-text" >
+                    <label class="layui-form-label">systeminfo：</label>
+                        <div class="layui-input-block" >
+                            <textarea rows="25" placeholder="请输入内容：systeminfo" class="layui-textarea" id="content"></textarea>
+                        </div>
+                 </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="getKBName();return false">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                         </div>
+                    </div>
+                 <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">Exploit：</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入内容" class="layui-textarea" id="result"></textarea>
+                        </div>
+                 </div>
+           </form>
+        </div>
+    </div>
+{% endblock %}
+{% block your_script %}
+<script src="../../static/js/winlist.js"></script>
+<script>
+function getKBName(){
+	var tasklist = document.getElementById('content').value;
+	var re = new RegExp("KB\\d+","gi");
+	var tasks = tasklist.match(re);
+	console.log(tasks);
+	var result = document.getElementById('result');
+	var htmlContent = "";
+	for(i=0; i<Object.keys(avList).length; i++){
+		var taskid = Object.keys(avList)[i];
+		for(x=0; x<tasks.length; x++){
+			if(taskid.toLowerCase() != tasks[x].toLowerCase()){
+				htmlContent += "可能存在漏洞：" + avList[taskid] + "\n";
+			}
+		}
+	}
+	result.innerHTML = htmlContent;
+}
+
+</script>
+{% endblock %}

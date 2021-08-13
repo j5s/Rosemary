@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body_part %}
+    <div class="layui-body">
+        <div class="layui-card-header">
+                    <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">RedTeam Tools</a>
+        <a href="">Bypass</a>
+        <a ><cite>Amsi Bypass</cite></a>
+    </span>
+
+
+        <blockquote class="layui-elem-quote">关于该模块</blockquote>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            AMSI generates obfuscated PowerShell snippets that break or disable AMSI for the current process. The snippets are randomly selected from a small pool of techniques/variations before being obfuscated. Every snippet is obfuscated at runtime/request so that no generated output share the same signatures.
+        </blockquote>
+            <textarea cols="150" id="PowerShellOut" rows="30"></textarea><br />
+        <button type="button" class="layui-btn" class="layui-btn layui-btn-lg" onclick="GeneratePS()">Generate</button>
+        </div>
+    </div>
+{% endblock %}
+{% block your_script %}
+<script>
+var xmlHttp = null;
+
+function GeneratePS(){
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = ProcessRequest;
+    xmlHttp.open("GET","https://cors-anywhere.herokuapp.com/https://amsi-fail.azurewebsites.net/api/Generate", true );
+    xmlHttp.send();
+}
+
+function ProcessRequest()
+{
+    if ( xmlHttp.readyState == 4 && xmlHttp.status == 200 )
+    {
+           document.getElementById("PowerShellOut").value =  xmlHttp.responseText;
+     }
+
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>迷迭香攻击平台</title>
+    <link rel="stylesheet" href="static/layui/css/layui.css">
+    <link rel="stylesheet" href="static/layui/css/base.css">
+    {% block your_css %}
+    {% endblock %}
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">
+                <span>迷迭香攻击平台</span>
+            </div>
+            <!-- 头部导航 -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="">首页</a></li>
+            </ul>
+            <ul class="layui-nav layui-layout-right" lay-filter="base_nav">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">用户</a>
+                    <dl class="layui-nav-child">
+                         <!--
+                        <dd><a href="">用户信息</a></dd>
+                          -->
+                        <dd><a href="/login-out">退出账号</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <!-- 左侧导航 -->
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                    <!--
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">
+                             <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe857;</i>
+                            <strong>项目管理</strong>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">添加任务</a></dd>
+                            <dd><a href="javascript:;">管理任务</a></dd>
+                            <dd><a href="">展示任务</a></dd>
+                        </dl>
+                    </li>
+
+
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                             <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe628;</i>
+                            <strong>信息搜集</strong>
+                        </a>
+                    </li>
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">
+                             <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe615;</i>
+                            <strong>漏洞扫描</strong>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">主动扫描</a></dd>
+                            <dd><a href="javascript:;">被动扫描</a></dd>
+                            <dd><a href="">专项扫描</a></dd>
+                        </dl>
+                    </li>
+                    -->
+
+                    <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">
+                             <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe631;</i>
+                            <strong>RedTeam Tools</strong>
+                    </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" class="menu_three ">提权</a>
+                                <ol class="layui-nav-child" style="">
+                                    <li><a href="win-priv">Windows提权</a></li>
+                                    <li><a href="linux-priv">Linux提权</a></li>
+                                </ol>
+                            </dd>
+
+                            <dd><a href="javascript:;" class="menu_three">免杀</a>
+                                <ol class="layui-nav-child" style="">
+                                    <li><a href="avcheck">AV探测</a></li>
+                                    <li><a href="shellcode">Shellcode混淆</a></li>
+                                    <!--
+                                    <li><a href="powershell">Powershell免杀</a></li>
+                                     -->
+                                    <li><a href="mimikatz">mimikatz免杀</a></li>
+                                </ol>
+                            </dd>
+                            <dd><a href="javascript:;" class="menu_three">Bypass</a>
+                                <ol class="layui-nav-child" style="">
+                                    <li><a href="wafbypass">Waf绕过</a></li>
+                                    <li><a href="sqlbypass">Sql Baypass</a></li>
+                                    <li><a href="amsibypass">Amsi Bypass</a></li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <!--
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe674;</i>
+                            <strong>Threat Hunting</strong>
+                        </a>
+                    </li>
+                    -->
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe674;</i>
+                            <strong>辅助工具</strong>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <!--
+                                <a href="javascript:;" class="menu_three ">密码生成</a>
+                                <a href="javascript:;" class="menu_three ">编码解码</a>
+                                -->
+                                <a href="brute" class="menu_three ">协议爆破</a>
+                            </dd>
+                        </dl>
+                    </li>
+
+
+                    <!--
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">
+                           <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe716;</i>
+                            <strong>设置</strong>
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">添加POC</a></dd>
+                            <dd><a href="javascript:;">用户管理</a></dd>
+                            <dd><a href="">钉钉提醒设置</a></dd>
+                        </dl>
+                    </li>
+                -->
+                <!-- <li class="layui-nav-item layui-nav-itemed">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon"  style="font-size: 20px; color: #1E9FFF;">&#xe60b;</i>
+                        <strong>关于我们</strong>
+                    </a>
+                </li>
+                -->
+                  <!-- <li class="layui-nav-item"><a href="">关于我们</a></li> -->
+                </ul>
+            </div>
+        </div>
+        {% block body_part %}
+        {% endblock %}
+    </div>
+    <script src="static/layui/layui.js"></script>
+    <script src="static/layui/layui.all.js"></script>
+    <script>
+        layui.use('element', function(){
+            var element = layui.element;
+            element.on('nav(base_nav)', function(elem){
+                layer.msg(elem.text());
+            });
+        });
+    </script>
+    {% block your_script %}
+    {% endblock %}
+</body>
+</html>
